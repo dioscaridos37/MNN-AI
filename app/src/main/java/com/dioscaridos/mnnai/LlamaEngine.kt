@@ -19,7 +19,7 @@ internal class LlamaEngine {
         return nativeGenerate(prompt, maxTokens, temperature)
     }
 
-    fun close() {
+    fun setThreads(value: Int) {\n        if (isLoaded) nativeSetThreads(value)\n    }\n\n    fun close() {
         if (isLoaded) {
             nativeRelease()
             isLoaded = false
@@ -28,5 +28,5 @@ internal class LlamaEngine {
 
     private external fun nativeLoad(path: String, threads: Int, contextSize: Int): Boolean
     private external fun nativeGenerate(prompt: String, maxTokens: Int, temperature: Float): String
-    private external fun nativeRelease()
+    private external fun nativeSetThreads(threads: Int)\n    private external fun nativeRelease()
 }

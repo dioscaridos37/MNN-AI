@@ -13,4 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MNN-AI"
-include(":app")
+include(":app", ":mnn-sdk")
+project(":mnn-sdk").projectDir = file("mnn-sdk/mnn-sdk")

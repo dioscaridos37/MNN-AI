@@ -191,9 +191,9 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
 
         settings = buildSettings()
         settings.visibility = View.GONE
-        val settingsParams = LinearLayout.LayoutParams(-1, -2)
-        settingsParams.topMargin = dp(10)
-        page.addView(settings, settingsParams)
+        val settingsCardParams = LinearLayout.LayoutParams(-1, -2)
+        settingsCardParams.topMargin = dp(10)
+        page.addView(settings, settingsCardParams)
 
         scroll = ScrollView(this).apply {
             clipToPadding = false

@@ -294,10 +294,10 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
             typeface = Typeface.DEFAULT_BOLD
             setTextColor(blue)
         })
-        addSlider(box, "Температура", 14, 6, { p -> temperature = 0.2f + p * 0.1f }, { p -> "%.1f".format(Locale.US, 0.2f + p * 0.1f) })
-        addSlider(box, "Длина ответа", 7, 3, { p -> maxTokens = 128 + p * 128 }, { p -> "${128 + p * 128} токенов" })
+        addSlider(box, "Температура", 14, 5, { p -> temperature = 0.2f + p * 0.1f }, { p -> "%.1f".format(Locale.US, 0.2f + p * 0.1f) })
+        addSlider(box, "Длина ответа", 7, 2, { p -> maxTokens = 128 + p * 128 }, { p -> "${128 + p * 128} токенов" })
         val maxThreads = Runtime.getRuntime().availableProcessors().coerceIn(2, 8)
-        addSlider(box, "Потоки процессора", maxThreads - 2, (threads - 2).coerceIn(0, maxThreads - 2), { p -> threads = p + 2 }, { p -> (p + 2).toString() })
+        addSlider(box, "Потоки процессора", maxThreads - 2, (threads - 2).coerceIn(0, maxThreads - 2), { p -> threads = p + 2; engine.setThreads(threads) }, { p -> (p + 2).toString() })
         val voiceSwitch = Switch(this).apply {
             text = "Озвучивать ответы"
             textSize = 12f

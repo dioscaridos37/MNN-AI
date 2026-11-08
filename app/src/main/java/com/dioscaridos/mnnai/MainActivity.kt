@@ -433,9 +433,11 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
                 withContext(Dispatchers.IO) {
                     modelFile.parentFile?.mkdirs()
                     if (!modelFile.exists() || modelFile.length() < minimumModelSize) {
+                        val partial = File(modelFile.parentFile, modelFile.name + ".part")
+                        val remaining = (expectedModelSize - partial.length()).coerceAtLeast(0L)
                         val free = StatFs(filesDir.absolutePath).availableBytes
-                        if (free < expectedModelSize + 150_000_000L) {
-                            error("Нужно освободить не менее 1,2 ГБ памяти телефона.")
+                        if (free < remaining + 100_000_000L) {
+                            error("Недостаточно свободной памяти для загрузки модели.")
                         }
                         downloadModel(modelFile)
                     }

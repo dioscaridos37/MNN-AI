@@ -27,7 +27,9 @@ jobs:
         with:
           gradle-version: "8.9"
       - name: Fetch MNN Android SDK source
-        run: git clone --depth 1 https://github.com/AdribMahmud101/mnn-android-sdk.git mnn-sdk
+        run: |
+          git clone --depth 1 https://github.com/AdribMahmud101/mnn-android-sdk.git mnn-sdk
+          sed -i 's/chatTemplateUsable = probeChatTemplate()/chatTemplateUsable = false/' mnn-sdk/mnn-sdk/src/main/kotlin/com/mnn/sdk/MNNLlm.kt
       - name: Build APK
         run: gradle --no-daemon assembleDebug
       - name: Create source ZIP from repository root

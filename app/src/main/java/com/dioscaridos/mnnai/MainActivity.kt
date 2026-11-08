@@ -180,6 +180,7 @@ class MainActivity : Activity() {
 
     private fun welcomeCard(): View {
         val card = LinearLayout(this).apply {
+            tag = "welcome"
             orientation = LinearLayout.VERTICAL; setPadding(dp(18), dp(18), dp(18), dp(17))
             background = glassBg(Color.argb(196, 29, 43, 68), 24); elevation = dp(8).toFloat()
         }
@@ -279,7 +280,7 @@ class MainActivity : Activity() {
     private fun send() {
         val message = input.text.toString().trim()
         if (message.isEmpty() || busy) return
-        chat.removeViewAt(0.takeIf { chat.childCount > 0 && chat.getChildAt(0).tag == "welcome" } ?: -1)
+        if (chat.childCount > 0 && chat.getChildAt(0).tag == "welcome") chat.removeViewAt(0)
         addMessage("Вы", message, true)
         input.text.clear()
         val active = model
@@ -367,7 +368,7 @@ class MainActivity : Activity() {
         super.onDestroy()
     }
 
-    private inner class AuraView : View(this) {
+    private inner class AuraView : View(this@MainActivity) {
         private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         private var phase = 0f
         private val animator = android.animation.ValueAnimator.ofFloat(0f, 1f).apply {

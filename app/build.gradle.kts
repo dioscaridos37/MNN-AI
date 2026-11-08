@@ -11,8 +11,8 @@ android {
         applicationId = "com.dioscaridos.mnnai"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "1.0.0"
     }
 
     compileOptions {
@@ -23,4 +23,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+dependencies {
+    implementation(project(":mnn-sdk"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }

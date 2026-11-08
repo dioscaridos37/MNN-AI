@@ -91,7 +91,7 @@ class MainActivity : Activity() {
                             }
                         }
                     }
-                    File(dir, "llm_config.json").absolutePath
+                    File(dir, "config.json").absolutePath
                 }
                 status.text = "●  ЗАПУСК ЛОКАЛЬНОЙ МОДЕЛИ…"
                 val loaded = MNNLlm.load(configPath)

@@ -222,3 +222,13 @@ Java_com_dioscaridos_mnnai_LlamaEngine_nativeRelease(JNIEnv *, jobject) {
         g_backend_ready = false;
     }
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_dioscaridos_mnnai_LlamaEngine_nativeSetThreads(JNIEnv *, jobject, jint threads) {
+    std::lock_guard<std::mutex> lock(g_mutex);
+    if (g_context) {
+        const int count = std::max(2, std::min(8, static_cast<int>(threads)));
+        llama_set_n_threads(g_context, count, count);
+    }
+}

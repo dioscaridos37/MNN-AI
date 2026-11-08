@@ -12,6 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MNN-AI"
-include(":app", ":mnn-sdk")
-project(":mnn-sdk").projectDir = file("mnn-sdk/mnn-sdk")
+rootProject.name = "DIX-AI"
+include(":app")

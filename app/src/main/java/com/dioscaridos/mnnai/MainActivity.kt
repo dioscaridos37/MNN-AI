@@ -32,7 +32,7 @@ class MainActivity : Activity() {
     private val muted = Color.rgb(151, 164, 187)
     private val accent = Color.rgb(155, 190, 255)
     private val modelUrl = "https://huggingface.co/taobao-mnn/MNN-Pocket-0.3B-MNN/resolve/main/"
-    private val modelFiles = listOf("llm.mnn", "llm.mnn.weight", "llm_config.json", "tokenizer.mtok")
+    private val modelFiles = listOf("config.json", "llm.mnn", "llm.mnn.weight", "llm_config.json", "tokenizer.mtok")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +96,7 @@ class MainActivity : Activity() {
                 status.text = "●  ЗАПУСК ЛОКАЛЬНОЙ МОДЕЛИ…"
                 val loaded = MNNLlm.load(configPath)
                 loaded.numThreads = (Runtime.getRuntime().availableProcessors() / 2).coerceIn(2, 6)
-                loaded.systemPrompt = "You are DICAAI, a helpful assistant. Reply in the same language as the user. Be concise and accurate."
+                loaded.systemPrompt = "You are DICAAI. Answer the actual question in the user language. Do not repeat previous answers unless asked."
                 llm = loaded
                 status.text = "●  MNN-POCKET 0.3B   ·   ОНЛАЙН НА УСТРОЙСТВЕ"
                 addMessage("DICAAI", "Модель загружена. Я готов отвечать локально.", false)

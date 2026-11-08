@@ -23,15 +23,17 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.9"
+      - name: Fetch MNN Android SDK source
+        run: git clone --depth 1 https://github.com/AdribMahmud101/mnn-android-sdk.git mnn-sdk
       - name: Build APK
         run: gradle --no-daemon assembleDebug
       - name: Create source ZIP from repository root
-        run: zip -r MNN-AI-source.zip . -x ".git/*" ".gradle/*" "**/build/*" "MNN-AI-source.zip"
+        run: zip -r MNN-AI-source.zip . -x ".git/*" ".gradle/*" "**/build/*" "MNN-AI-source.zip" "mnn-sdk/.git/*"
       - uses: actions/upload-artifact@v4
         with:
-          name: MNN-AI-debug-apk
+          name: DICAAI-Android-APK
           path: app/build/outputs/apk/debug/*.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: MNN-AI-source-zip
+          name: DICAAI-source-ZIP
           path: MNN-AI-source.zip

@@ -181,6 +181,7 @@ class MainActivity : Activity() {
     private fun welcomeCard(): View {
         val card = LinearLayout(this).apply {
             tag = "welcome"
+            tag = "welcome"
             orientation = LinearLayout.VERTICAL; setPadding(dp(18), dp(18), dp(18), dp(17))
             background = glassBg(Color.argb(196, 29, 43, 68), 24); elevation = dp(8).toFloat()
         }
